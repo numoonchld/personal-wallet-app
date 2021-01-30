@@ -1,0 +1,31 @@
+# Reference:
+# https://auth0.com/blog/use-docker-to-create-a-node-development-environment/#docker-compose
+
+version: "3.8"
+services:
+  node_dev_env:
+    build: ./server
+    container_name: node-docker
+    env_file: server/.env
+    ports:
+      - 3000:3000
+    volumes:
+      - ./server:/home/app
+    depends_on: 
+      - postgres_db
+  react_dev_env:
+    build: ./client
+    container_name: react-docker
+    env_file: client/.env
+    ports: 
+      - 3500:3500
+    volumes: 
+      - ./client:/home/app
+  postgres_db:
+    build: ./db
+    container_name: postgres-docker
+    env_file: db/.env 
+    ports:
+      - 5432:5432
+    volumes: 
+      - ./db/data:/var/lib/postgresql/data
