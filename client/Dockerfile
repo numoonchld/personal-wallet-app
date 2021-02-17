@@ -6,6 +6,6 @@ ENV PORT 3500
 
 EXPOSE 3500
 
-# ENTRYPOINT /bin/bash
+ENTRYPOINT /bin/bash
 
-CMD cd client && npm start
+# CMD cd client && npm start

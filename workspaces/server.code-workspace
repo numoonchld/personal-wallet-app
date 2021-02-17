@@ -4,5 +4,9 @@
 			"path": "../server"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.words": [
+			"Paise"
+		]
+	}
 }
