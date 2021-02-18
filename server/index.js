@@ -159,7 +159,7 @@ app.put('/spendFunds', [
 })
 
 // 04. USER TRANSACTIONS -----------------------------------------------
-app.get('/transactions/:userID', async (req, res) => { 
+app.get('/transactions/:userID', async (req, res) => {
     try {
         const { userID } = req.params
         const singleUserTransaction = await pool.query(
@@ -167,7 +167,7 @@ app.get('/transactions/:userID', async (req, res) => {
         )
 
         // console.log(singleUserTransaction)
-        
+
         res.json({ transactions: singleUserTransaction.rows })
 
     } catch (error) {
@@ -175,6 +175,20 @@ app.get('/transactions/:userID', async (req, res) => {
     }
 })
 
+// 05. GET ALL WALLETS ---------------------------------------------
+app.get('/user', async (req, res) => {
+    try {
+        const allUsers = await pool.query(
+            `SELECT * FROM personal_wallet`
+        )
+
+        res.json({
+            allWallets: allUsers.rows
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+})
 
 
 // SERVER LISTEN ---------------------------------------------------------
