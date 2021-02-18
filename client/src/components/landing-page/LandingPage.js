@@ -16,10 +16,14 @@ function LandingPage() {
   
     }, [])
 
-    const [currentUser, setCurrentUser] = useState(0)
+    const [currentUser, setCurrentUser] = useState(null)
 
     const handleUserSelection = (event) => {
-        setCurrentUser(event.target.value)
+
+        if (event.target.value !== '---') {
+            setCurrentUser(event.target.value)
+        }
+        
     }
 
     return (
@@ -33,11 +37,11 @@ function LandingPage() {
 
                             <label htmlFor="userSelect" className="bmd-label-floating">Select User ID</label>
                             <select className="form-control" id="userSelect" onChange={handleUserSelection} >
-                                <option> --- </option>
+                                <option> {null} </option>
                                 {allWallets.map(wallet => <option key={wallet.user_id} align="center"> {wallet.user_id}</option>)}
                             </select>
                             <br />
-                            <Link to={`/user-dashboard/${currentUser}`} ><button className='btn btn-outline-success m-5'> User Dashboard</button></Link>
+                            {currentUser ? <Link to={`/user-dashboard/${currentUser}`} ><button className='btn btn-outline-success m-5'> User Dashboard</button></Link> : null }
                         </form>
                     </div>
                 </section>
