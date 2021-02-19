@@ -45,7 +45,7 @@ function UserDashboard({ history, location, match }) {
                         <hr/>
                         <div className=''>
                             <p>Current Balance</p>
-                            <h4 className='text-danger'> <strong>Rs. {currentUserInfo.balance / 100}</strong></h4>
+                            <h4 className='text-success'> <strong>Rs. {currentUserInfo.balance / 100}</strong></h4>
                         </div>
 
                     </div>

@@ -8,9 +8,22 @@ function NewWallet({ history, location, match }) {
     const [phone, setPhone] = useState('')
     const [balance, setBalance] = useState('')
 
-    const handleSubmit = (event) => { 
+
+    const handleSubmit = async event => { 
         event.preventDefault()
-        console.log({ username, phone, balance })
+        
+        const response = await fetch('http://localhost:3000/user', {
+            method:'POST',
+            headers: {'Content-type':'application/json'},
+            body: JSON.stringify({ username, phone, balance })
+        })
+
+        if (response.ok) {
+            history.push('/new-wallet/success')
+        } else {
+            window.alert("New Wallet Creation Failed!")
+        }
+
     }
 
     return <Fragment>
