@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
-export default function UserDashboard({ history, location, match }) {
+function UserDashboard({ history, location, match }) {
 
     // console.log(match.params)
     const { currentUser } = match.params
@@ -25,25 +26,26 @@ export default function UserDashboard({ history, location, match }) {
 
 
 
-    return <Fragment>
-        <div className="container">
+    return <Fragment> 
+        <div className="container py-5">
 
-            <div className='d-flex flex-column align-items-center py-5'>
+            <div className='d-flex flex-column align-items-center'>
 
-                <Link to='/'><button className='btn btn-outline-secondary'> Home </button></Link>
+                <button className='btn btn-outline-secondary' onClick={() => history.push('/')}> Home </button>
 
-                <section className='m-5 w-50'>
-                    <div className="card" align='center'>
-                        <div className='card-header' >
+                <section className='my-5'>
+                    <div className="p-2" align='center'>
+                        <div className='card-title' >
                             <p>Username</p>
-                            <h6 >{currentUserInfo.username}</h6>
-                            <hr />
-                            <p>User ID</p>
-                            <h6 >{currentUserInfo.user_id}</h6>
+                            <h4 >{currentUserInfo.username}</h4>
                         </div>
-                        <div className='card-body'>
+                        <div className='text-muted' >
+                            <p>(User ID: <b>{currentUserInfo.user_id}</b>)</p>
+                        </div>
+                        <hr/>
+                        <div className=''>
                             <p>Current Balance</p>
-                            <h2> Rs. {currentUserInfo.balance / 100}</h2>
+                            <h4 className='text-danger'> <strong>Rs. {currentUserInfo.balance / 100}</strong></h4>
                         </div>
 
                     </div>
@@ -55,5 +57,6 @@ export default function UserDashboard({ history, location, match }) {
 
     </Fragment>
 
-
 }
+
+export default withRouter(UserDashboard)

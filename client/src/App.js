@@ -17,7 +17,7 @@ function App() {
     <Switch>
       <Route exact path='/' component={LandingPage} />
       <Route path='/user-dashboard/:currentUser' component={UserDashboard} />
-      <Route path='/new-wallets' component={NewWallet} />
+      <Route path='/new-wallet' component={NewWallet} />
       <Route path='/all-wallets' component={AllWallets} />
       <Route path='/all-transaction' component={AllTransactions} />
       <Route path='/add-funds/:currentUser' component={AddFunds} />
