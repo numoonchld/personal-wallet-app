@@ -26,15 +26,15 @@ function UserDashboard({ history, location, match }) {
 
 
 
-    return <Fragment> 
+    return <Fragment>
         <div className="container py-5">
 
             <div className='d-flex flex-column align-items-center'>
 
-                <button className='btn btn-outline-secondary' onClick={() => history.push('/')}> Home </button>
-
                 <section className='my-5'>
+
                     <div className="p-2" align='center'>
+
                         <div className='card-title' >
                             <p>Username</p>
                             <h4 >{currentUserInfo.username}</h4>
@@ -42,14 +42,25 @@ function UserDashboard({ history, location, match }) {
                         <div className='text-muted' >
                             <p>(User ID: <b>{currentUserInfo.user_id}</b>)</p>
                         </div>
-                        <hr/>
+
+                        <hr />
+
                         <div className=''>
                             <p>Current Balance</p>
                             <h4 className='text-success'> <strong>Rs. {currentUserInfo.balance / 100}</strong></h4>
                         </div>
 
                     </div>
+
                 </section>
+
+                
+                <button className='btn btn-outline-secondary w-100' onClick={() => history.push('/')}> Back </button>
+                <button className='btn btn-outline-success w-100' onClick={()=>history.push('/new-wallet')}> Add Funds </button>
+                <button className='btn btn-outline-warning w-100'> Spend Funds </button>
+                <button className='btn btn-outline-info w-100'> User Transactions </button>
+
+
             </div>
 
 

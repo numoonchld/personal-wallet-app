@@ -1,14 +1,27 @@
-import React, { Fragment } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, { Fragment, useState, useEffect } from 'react'
+import { withRouter, Link } from 'react-router-dom'
 
 function AllTransactions() {
+
+    const [allTransactions, setAllTransactions] = useState([])
+
+    useEffect(() => {
+
+        fetch('http://localhost:3000/transactions')
+            .then(response => response.json())
+            // .then(data => setAllWallets(data.allTransactions))
+            .then(data => console.log(data))
+
+
+    }, [])
+
     return <Fragment>
         <div className='container py-5' align='center'>
-            <h3> NEW WALLET </h3>
+            <h3> ALL TRANSACTIONS </h3>
             <hr />
-            <form className='card'>
-
-            </form>
+            <Link to='/'> Cancel </Link>
+            <br />
+            {/* { allTransactions.map(transaction => <WalletItem key={0} transaction={transaction} /> )} */}
         </div>
     </Fragment>
 }

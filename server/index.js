@@ -190,6 +190,20 @@ app.get('/user', async (req, res) => {
     }
 })
 
+// 06. GET ALL TRANSACTIONS ---------------------------------------------
+app.get('/transactions', async (req, res) => {
+    try {
+        const allTransactions = await pool.query(
+            `SELECT * FROM personal_wallet NATURAL JOIN transactions`
+        )
+
+        res.json({
+            allTransactions: allTransactions.rows
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+})
 
 // SERVER LISTEN ---------------------------------------------------------
 // start server listen 

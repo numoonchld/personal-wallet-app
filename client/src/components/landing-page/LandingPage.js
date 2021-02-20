@@ -57,8 +57,8 @@ function LandingPage({history}) {
 
 
                 <button className='btn btn-outline-success w-100' onClick={()=>history.push('/new-wallet')}> New Wallet </button>
-                <button className='btn btn-outline-primary w-100'> All Wallets </button>
-                <button className='btn btn-outline-primary w-100'> All Transactions </button>
+                <button className='btn btn-outline-info w-100' onClick={()=>history.push('/all-wallets')}> All Wallets </button>
+                <button className='btn btn-outline-info w-100' onClick={()=>history.push('/all-transactions')}> All Transactions </button>
 
             </div>
 
