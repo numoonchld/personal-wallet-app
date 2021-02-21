@@ -1,18 +1,23 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+import TransactionItem from './TransactionItem'
 
 function AllTransactions() {
 
     const [allTransactions, setAllTransactions] = useState([])
 
+    const getAllTransactions = async () => {
+        try {
+            const response = fetch('http://localhost:3000/transactions')
+                .then(response => response.json())
+                .then(data => setAllTransactions(data.allTransactions))
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
     useEffect(() => {
-
-        fetch('http://localhost:3000/transactions')
-            .then(response => response.json())
-            // .then(data => setAllWallets(data.allTransactions))
-            .then(data => console.log(data))
-
-
+        getAllTransactions()
     }, [])
 
     return <Fragment>
@@ -21,7 +26,7 @@ function AllTransactions() {
             <hr />
             <Link to='/'> Cancel </Link>
             <br />
-            {/* { allTransactions.map(transaction => <WalletItem key={0} transaction={transaction} /> )} */}
+            {allTransactions.map(transaction => <TransactionItem key={transaction.transaction_id} transaction={transaction} />)}
         </div>
     </Fragment>
 }

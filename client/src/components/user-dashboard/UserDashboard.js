@@ -7,19 +7,28 @@ function UserDashboard({ history, location, match }) {
 
     // console.log(match.params)
     const { currentUser } = match.params
-    // console.log(currentUser)
+    console.log(currentUser)
 
     const [currentUserInfo, setCurrentUserInfo] = useState({})
 
+    const getCurrentUserInfo = async () => {
+        try {
+
+            const response = await fetch('http://localhost:3000/user')
+                .then(response => response.json())
+                .then(data => {
+                    // console.log('Log 1: ',data.allWallets.filter(wallet => wallet.user_id == currentUser)[0])
+                    setCurrentUserInfo(data.allWallets.filter(wallet => wallet.user_id == currentUser)[0])
+                })
+
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
     useEffect(() => {
 
-        fetch('http://localhost:3000/user')
-            .then(response => response.json())
-            .then(data => {
-                // console.log('Log 1: ',data.allWallets.filter(wallet => wallet.user_id == currentUser)[0])
-                setCurrentUserInfo(data.allWallets.filter(wallet => wallet.user_id == currentUser)[0])
-
-            })
+        getCurrentUserInfo()
 
     }, [])
 
@@ -54,9 +63,9 @@ function UserDashboard({ history, location, match }) {
 
                 </section>
 
-                
+
                 <button className='btn btn-outline-secondary w-100' onClick={() => history.push('/')}> Back </button>
-                <button className='btn btn-outline-success w-100' onClick={()=>history.push('/new-wallet')}> Add Funds </button>
+                <button className='btn btn-outline-success w-100' onClick={() => history.push(`/add-funds/${currentUser}`)}> Add Funds </button>
                 <button className='btn btn-outline-warning w-100'> Spend Funds </button>
                 <button className='btn btn-outline-info w-100'> User Transactions </button>
 
