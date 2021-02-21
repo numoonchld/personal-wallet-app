@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 
-function AddFunds({match}) {
+function AddFunds({ match, history }) {
 
     const { currentUser } = match.params
 
@@ -9,17 +9,19 @@ function AddFunds({match}) {
     const [amount, setAmount] = useState('')
     const [remarks, setRemarks] = useState('')
 
-    const handleSubmit = async event => { 
+    const handleSubmit = async event => {
         event.preventDefault()
-        
+
+        const body = { user_id, amount, remarks }
+
         const response = await fetch('http://localhost:3000/addFunds', {
-            method:'POST',
-            headers: {'Content-type':'application/json'},
-            body: JSON.stringify({ user_id, amount, remarks })
+            method: 'PUT',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(body)
         })
 
         if (response.ok) {
-            // history.push('/new-wallet/success')
+            history.push(`/new-transaction/success/${currentUser}`)
         } else {
             window.alert("New Wallet Creation Failed!")
         }
@@ -53,7 +55,7 @@ function AddFunds({match}) {
                     />
                 </div>
 
-                <button className='btn btn-outline-success mt-5' type='submit'> Create New Wallet </button>
+                <button className='btn btn-outline-success mt-5' type='submit'> ADD </button>
 
             </form>
             <Link to={`/user-dashboard/${parseInt(user_id)}`}> Cancel </Link>

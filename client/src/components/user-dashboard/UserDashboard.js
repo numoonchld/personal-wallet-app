@@ -66,8 +66,8 @@ function UserDashboard({ history, location, match }) {
 
                 <button className='btn btn-outline-secondary w-100' onClick={() => history.push('/')}> Back </button>
                 <button className='btn btn-outline-success w-100' onClick={() => history.push(`/add-funds/${currentUser}`)}> Add Funds </button>
-                <button className='btn btn-outline-warning w-100'> Spend Funds </button>
-                <button className='btn btn-outline-info w-100'> User Transactions </button>
+                <button className='btn btn-outline-warning w-100' onClick={() => history.push(`/spend-funds/${currentUser}`)}> Spend Funds </button>
+                <button className='btn btn-outline-info w-100' onClick={() => history.push(`/user-transactions/${currentUser}`)}> User Transactions </button>
 
 
             </div>
