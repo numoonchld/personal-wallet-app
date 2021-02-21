@@ -5,9 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 function UserDashboard({ history, location, match }) {
 
-    // console.log(match.params)
     const { currentUser } = match.params
-    console.log(currentUser)
 
     const [currentUserInfo, setCurrentUserInfo] = useState({})
 
@@ -17,7 +15,6 @@ function UserDashboard({ history, location, match }) {
             const response = await fetch('http://localhost:3000/user')
                 .then(response => response.json())
                 .then(data => {
-                    // console.log('Log 1: ',data.allWallets.filter(wallet => wallet.user_id == currentUser)[0])
                     setCurrentUserInfo(data.allWallets.filter(wallet => wallet.user_id == currentUser)[0])
                 })
 
@@ -56,7 +53,7 @@ function UserDashboard({ history, location, match }) {
 
                         <div className=''>
                             <p>Current Balance</p>
-                            <h4 className='text-success'> <strong>Rs. {currentUserInfo.balance / 100}</strong></h4>
+                            <h4 className='text-success'> <strong>Rs. {currentUserInfo.balance / 100.00}</strong></h4>
                         </div>
 
                     </div>

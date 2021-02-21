@@ -41,7 +41,7 @@ app.post('/user', [
         const { user_id } = newUserWallet.rows[0]
 
         const addBalance = await pool.query(
-            `INSERT INTO transactions (user_id, transaction_type, initial_balance, amount, final_balance, remarks) VALUES(${user_id}, FALSE, 0, ${balance}, ${balance}, 'Initial Deposit') RETURNING *`
+            `INSERT INTO transactions (user_id, transaction_type, initial_balance, amount, final_balance, remarks) VALUES(${user_id}, FALSE, 0, ${balanceInPaisa}, ${balanceInPaisa}, 'Initial Deposit') RETURNING *`
         )
 
         const successPayload = {

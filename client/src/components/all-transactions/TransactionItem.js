@@ -8,13 +8,6 @@ function TransactionItem({ transaction }) {
     // console.log({ username, transaction_date, amount, final_balance })
 
     const transaction_date_js = new Date(transaction_date)
-    console.log(transaction_date_js)
-
-    // const trans_year = transaction_date_js.getFullYear()
-    // const trans_month
-    // const trans_date
-    // const trans_hour
-    // const trans_min
 
     return <Fragment>
 
@@ -33,7 +26,7 @@ function TransactionItem({ transaction }) {
                 <div className='card-body'>
                     <h5>
                         <b className={transaction_type ? `text-danger` : `text-success`}>
-                            Rs. {amount / 100}
+                            Rs. {amount / 100.00}
                         </b>
 
                     </h5>
@@ -41,7 +34,7 @@ function TransactionItem({ transaction }) {
                 </div>
                 <div className='card-footer'>
                     <p> Remaining Balance: </p>
-                    <p className='text-success'> Rs. {final_balance / 100} </p>
+                    <p className='text-success'> Rs. {final_balance / 100.00} </p>
                 </div>
 
 
