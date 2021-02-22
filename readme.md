@@ -26,7 +26,7 @@
 
 - Open the project root folder in terminal 
 
-- Execute `docker-compose up` in the terminal
+- Execute `docker-compose up --build` in the terminal
 
 - After Database, Server and Client containers have spun up in the terminal, visit `http://localhost:3500` for the app front-end 
 

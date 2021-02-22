@@ -8,4 +8,4 @@ EXPOSE 3500
 
 # ENTRYPOINT /bin/bash
 
-CMD npm start
+CMD npm install && npm start
